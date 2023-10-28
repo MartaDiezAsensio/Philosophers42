@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:16:57 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/10/27 19:09:26 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/10/28 19:18:44 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <sys/time.h> //gettimeofday()
 
 // Define the state of each philosopher
-enum { THINKING, HUNGRY, EATING, SLEEPING, DEAD}; // Change HUNGRY for THINKING
+enum { THINKING, HUNGRY, EATING, SLEEPING, DEAD};
 
 typedef struct
 {
@@ -27,7 +27,7 @@ typedef struct
 } Philosopher;
 
 
-// Fnction to get the current timestamp in milliseconds
+// Function to get the current timestamp in milliseconds
 long long   current_time_ms()
 {
     struct timeval now;
@@ -35,4 +35,48 @@ long long   current_time_ms()
     return (long long)now.tv_sec * 1000 + now.tv_usec / 100;
 }
 
-void    long_message()
+void    long_message(int philosopher_number, const char *message)
+{
+    // Log messagess with timestamps
+    printf("%lld %d %s\n", current_time_ms, philosopher_number, message);
+    fflush(stdout); // Needed for memory allocstion purpooses?
+}
+
+// Create a Philosopher Behaviuor Function
+void    *philosopher_behavior(void *arg)
+{
+    Philosopher *philosopher = (Philosopher *)arg;
+    // Implement philosopher's behaviour
+    return (NULL);
+}
+
+// Parse comand-line arguments
+    // Allocate memory fr an array of philosophers
+    // Creaate threads for philosphers and set their initia; states
+    // wait for threads to finish
+    // Cleaan up resurces and free memory
+
+int main(int argc, char **argv)
+{
+    int         num_philosophers;
+    Philosopher *philosophers;
+    int         i;
+
+    // Memory allocation
+    num_philosophers = atoi(argv[1]);
+    philosophers = (Philosopher *)malloc(num_philosophers * sizeof(Philosopher));
+    if (!philosophers)
+        return (1);
+
+    // Create threads for each philosopher. Passing the corresponding Philosopher structure as an argument.
+    i = 0;
+    while (i < num_philosophers)
+    {
+        philosophers[i].number = i + 1;
+        pthread_mutex_init(&philosophers[i].fork, NULL);
+        i++;
+    }
+    // Create philosopher threads and set their initial state.
+    return (0);
+}
+
