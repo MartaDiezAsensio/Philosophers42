@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:08:58 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/10/30 19:17:19 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:43:50 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_philo
 	struct	s_data	*data;
 	pthread_t		t1;
 	int				id;
-	int				eaat_cont;
+	int				eat_cont;
 	int				status;
 	int				eating;
 	uint64_t		time_to_die;
@@ -41,6 +41,7 @@ typedef struct s_data
 	int				finished;
 	t_philo			*philos;
 	u_int64_t		death_time;
+	u_int64_t		eat_time;
 	u_int64_t		sleep_time;
 	u_int64_t		start_time;
 	pthread_mutex_t	*forks;
@@ -49,3 +50,25 @@ typedef struct s_data
 }t_data;
 
 //https://github.com/TommyJD93/Philosophers
+
+
+//	alloc_err
+# define ALLOC_ERR_1 "ERROR WHILE ALLOCATING THREADS IDs"
+# define ALLOC_ERR_3 "ERROR WHILE ALLOCATING PHILOS"
+# define ALLOC_ERR_2 "ERROR WHILE ALLOCATING FORKS"
+//	input_err
+# define ERR_IN_1 "INVALID INPUT CHARACTER"
+# define ERR_IN_2 "INVALID INPUT VALUES"
+//	pthread_err
+# define TH_ERR "ERROR WHILE CREATING THREADS"
+# define JOIN_ERR "ERROR WHILE JOINING THREADS"
+# define INIT_ERR_1 "ERROR WHILE INIT FORKS"
+//	time_err
+# define TIME_ERR "UNABLE TO RETRIVE UTC"
+//	philo_msg
+# define TAKE_FORKS "has taken a fork"
+# define THINKING "is thinking"
+# define SLEEPING "is sleeping"
+# define EATING "is eating"
+# define DIED "died"
+
