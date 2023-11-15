@@ -6,77 +6,72 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:16:57 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/10/28 19:18:44 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:49:27 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <pthread.h>
-#include <unistd.h>
-#include <sys/time.h> //gettimeofday()
+#include "../include/philo.h"
 
-// Define the state of each philosopher
-enum { THINKING, HUNGRY, EATING, SLEEPING, DEAD};
-
-typedef struct
+int	case_one(t_data *data)
 {
-    int             number; // Philosopher number
-    pthread_mutex_t fork; // Fork for this philosopher
-} Philosopher;
-
-
-// Function to get the current timestamp in milliseconds
-long long   current_time_ms()
-{
-    struct timeval now;
-    gettimeofday(&now, NULL);
-    return (long long)now.tv_sec * 1000 + now.tv_usec / 100;
+	data->start_time = get_time();
+	if (pthread_create(&data->tid[0], NULL, &routine, &data->philos[0]))
+		return (error(TH_ERR, data));
+	pthread_detach(data->tid[0]);
+	while (data->dead == 0)
+		ft_usleep(0);
+	ft_exit(data);
+	return (0);
 }
 
-void    long_message(int philosopher_number, const char *message)
+
+void	clear_data(t_data *data)
 {
-    // Log messagess with timestamps
-    printf("%lld %d %s\n", current_time_ms, philosopher_number, message);
-    fflush(stdout); // Needed for memory allocstion purpooses?
+	if (data->tid)
+		free(data->tid);
+	if (data->forks)
+		free(data->forks);
+	if (data->philos)
+		free(data->philos);
 }
 
-// Create a Philosopher Behaviuor Function
-void    *philosopher_behavior(void *arg)
+void	ft_exit(t_data *data)
 {
-    Philosopher *philosopher = (Philosopher *)arg;
-    // Implement philosopher's behaviour
-    return (NULL);
+	int	i;
+
+	i = -1;
+	while (++i , data->philo_num)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		pthread_mutex_destroy(&data[i].lock);
+	}
+	pthread_mutex_destroy(&data->write);
+	pthread_mutex_destroy(&data->lock);
+	clear_data(data);
 }
 
-// Parse comand-line arguments
-    // Allocate memory fr an array of philosophers
-    // Creaate threads for philosphers and set their initia; states
-    // wait for threads to finish
-    // Cleaan up resurces and free memory
-
-int main(int argc, char **argv)
+int	error(char *str, t_data *data)
 {
-    int         num_philosophers;
-    Philosopher *philosophers;
-    int         i;
-
-    // Memory allocation
-    num_philosophers = atoi(argv[1]);
-    philosophers = (Philosopher *)malloc(num_philosophers * sizeof(Philosopher));
-    if (!philosophers)
-        return (1);
-
-    // Create threads for each philosopher. Passing the corresponding Philosopher structure as an argument.
-    i = 0;
-    while (i < num_philosophers)
-    {
-        philosophers[i].number = i + 1;
-        pthread_mutex_init(&philosophers[i].fork, NULL);
-        i++;
-    }
-    // Create philosopher threads and set their initial state.
-    return (0);
+	printf("%s\n", str);
+	if (data)
+		ft_exit(data);
+	return (1);
 }
 
+int	main(int argc, char **argv)
+{
+	t_data	data;
+
+	if (argc < 5 || argc > 6)
+		return (1);
+	if (input_checker(argv))
+		return (1);
+	if (init(&data, argv, argc))
+		return (1);
+	if (data.philo_num == 1)
+		return (case_one(&data));
+	if (thread_init(&data))
+		return (1);
+	ft_exit(&data);
+	return (0);
+}

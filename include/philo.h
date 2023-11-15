@@ -6,15 +6,44 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:08:58 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/09 17:43:50 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:50:30 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#ifndef PHILO_H
+# define PHILO_H
+
+
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <pthread.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>
+
+
+//	alloc_err
+# define ALLOC_ERR_1 "ERROR WHILE ALLOCATING THREADS IDs"
+# define ALLOC_ERR_3 "ERROR WHILE ALLOCATING PHILOS"
+# define ALLOC_ERR_2 "ERROR WHILE ALLOCATING FORKS"
+//	input_err
+# define ERR_IN_1 "INVALID INPUT CHARACTER"
+# define ERR_IN_2 "INVALID INPUT VALUES"
+//	pthread_err
+# define TH_ERR "ERROR WHILE CREATING THREADS"
+# define JOIN_ERR "ERROR WHILE JOINING THREADS"
+# define INIT_ERR_1 "ERROR WHILE INIT FORKS"
+//	time_err
+# define TIME_ERR "UNABLE TO RETRIVE UTC"
+//	philo_msg
+# define TAKE_FORKS "has taken a fork"
+# define THINKING "is thinking"
+# define SLEEPING "is sleeping"
+# define EATING "is eating"
+# define DIED "died"
+
 
 struct	s_data;
 
@@ -49,26 +78,36 @@ typedef struct s_data
 	pthread_mutex_t	write;
 }t_data;
 
+
+//	Utils
+long		ft_atoi(const char *str);
+int			error(char *str, t_data *data);
+int			ft_strcmp(char *s1, char *s2);
+void		messages(char *str, t_philo *philo);
+void		ft_exit(t_data *data);
+
+//	Time
+u_int64_t	get_time(void);
+int			ft_usleep(useconds_t time);
+
+//	Init
+int			init(t_data *data, char **argv, int argc);
+int			thread_init(t_data *data);
+
+//	Checker
+int			input_checker(char **argv);
+
+//	Actions
+void		eat(t_philo *philo);
+
+//	Threads
+void		*routine(void *philo_pointer);
+
+
 //https://github.com/TommyJD93/Philosophers
 
 
-//	alloc_err
-# define ALLOC_ERR_1 "ERROR WHILE ALLOCATING THREADS IDs"
-# define ALLOC_ERR_3 "ERROR WHILE ALLOCATING PHILOS"
-# define ALLOC_ERR_2 "ERROR WHILE ALLOCATING FORKS"
-//	input_err
-# define ERR_IN_1 "INVALID INPUT CHARACTER"
-# define ERR_IN_2 "INVALID INPUT VALUES"
-//	pthread_err
-# define TH_ERR "ERROR WHILE CREATING THREADS"
-# define JOIN_ERR "ERROR WHILE JOINING THREADS"
-# define INIT_ERR_1 "ERROR WHILE INIT FORKS"
-//	time_err
-# define TIME_ERR "UNABLE TO RETRIVE UTC"
-//	philo_msg
-# define TAKE_FORKS "has taken a fork"
-# define THINKING "is thinking"
-# define SLEEPING "is sleeping"
-# define EATING "is eating"
-# define DIED "died"
+
+
+#endif
 

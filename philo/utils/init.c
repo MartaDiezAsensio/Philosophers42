@@ -6,13 +6,27 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:35:38 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/09 19:50:07 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:50:35 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./philo.h"
+#include "../../include/philo.h"
 
+int	alloc(t_data *data)
+{
+	data->tid = malloc(sizeof(pthread_t) * data->philo_num);
+	if (!data->tid)
+		return (error(ALLOC_ERR_1), data);
+	data->forks = maloc(sizeof(pthread_mutex_t) * data->philo_num);
+	if (!data->forks)
+		return (error(ALLOC_ERR_2), data);
+	data->philos = malloc(sizeof(t_philo) * data->philo_num);
+	if (!data->philos)
+		return (error(ALLOC_ERR_3), data);
+	return (0);
+}
 
+// Probar de simplificar funcion
 int	init_forks(t_data *data)
 {
 	int	i;
@@ -33,7 +47,7 @@ int	init_forks(t_data *data)
 	return (0);
 }
 
-
+// Cuantos mutex hace falta inicializar. Forks = lock
 void	init_philos(t_data *data)
 {
 	int	i;
@@ -52,11 +66,6 @@ void	init_philos(t_data *data)
 	}
 }
 
-
-// data->dead = 0;
-// data->finished = 0;
-// pthread_mutex_init(&data->write, NULL);
-// pthread_mutex_init(&data->lock, NULL);
 int	init_data(t_data *data, char **argv, int argc)
 {
 	data->philo_num = (int) ft_atoi(argv[1]);
