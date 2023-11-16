@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:35:38 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/16 18:01:39 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:04:07 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	init_forks(t_data *data)
 	return (0);
 }
 
-// Cuantos mutex hace falta inicializar. Forks = lock
 void	init_philos(t_data *data)
 {
 	int	i;

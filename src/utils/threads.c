@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 19:43:37 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/16 18:01:50 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:08:52 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	*monitor(void *data_pointer)
 	return ((void *)0);
 }
 
-// Supervisa tema comer
 void	*supervisor(void *philo_poiner)
 {
 	t_philo	*philo;

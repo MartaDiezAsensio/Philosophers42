@@ -6,17 +6,15 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:49:52 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/16 18:01:31 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:05:47 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
 
-//testear esta funcion + orden forks en mutex
 u_int64_t	get_time(void)
 {
 	struct timeval	tv;
-	
 	if (gettimeofday(&tv, NULL))
 		return (error("gettimeofday() FAILURE\n", NULL));
 	return ((tv.tv_sec * (u_int16_t)1000) + (tv.tv_usec / 1000));

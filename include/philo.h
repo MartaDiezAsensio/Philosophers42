@@ -6,20 +6,20 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:08:58 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/16 18:01:14 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:05:34 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <pthread.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/time.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <string.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <sys/time.h>
 
 //	alloc_err
 # define ALLOC_ERR_1 "ERROR WHILE ALLOCATING THREADS IDs"
@@ -45,7 +45,7 @@ struct	s_data;
 
 typedef struct s_philo
 {
-	struct	s_data	*data;
+	struct s_data	*data;
 	pthread_t		t1;
 	int				id;
 	int				eat_cont;

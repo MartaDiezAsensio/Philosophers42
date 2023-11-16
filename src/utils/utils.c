@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:14:41 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/16 18:01:57 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:03:43 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ long	ft_atoi(const char *str)
 	return(result * sign);
 }
 
-// Comprobar si el inputsolo contiene valores numericos
 int	input_checker(char **argv)
 {
 	int	i;
@@ -68,7 +67,7 @@ int	input_checker(char **argv)
 				continue ;
 			}
 			if (argv[i][j] < '0' || argv[i][j] > '9')
-				return (error(ERR_IN_1, NULL)); // Return (1) break;
+				return (error(ERR_IN_1, NULL));
 			j++;
 		}
 		i++;
