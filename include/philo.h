@@ -6,14 +6,12 @@
 /*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:08:58 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/15 21:50:30 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:01:14 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef PHILO_H
 # define PHILO_H
-
 
 #include <stdlib.h>
 #include <stdbool.h>
@@ -22,7 +20,6 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>
-
 
 //	alloc_err
 # define ALLOC_ERR_1 "ERROR WHILE ALLOCATING THREADS IDs"
@@ -43,7 +40,6 @@
 # define SLEEPING "is sleeping"
 # define EATING "is eating"
 # define DIED "died"
-
 
 struct	s_data;
 
@@ -78,7 +74,6 @@ typedef struct s_data
 	pthread_mutex_t	write;
 }t_data;
 
-
 //	Utils
 long		ft_atoi(const char *str);
 int			error(char *str, t_data *data);
@@ -103,11 +98,4 @@ void		eat(t_philo *philo);
 //	Threads
 void		*routine(void *philo_pointer);
 
-
-//https://github.com/TommyJD93/Philosophers
-
-
-
-
 #endif
-
