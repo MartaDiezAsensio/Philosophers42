@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:14:41 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/16 18:03:43 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/17 18:16:52 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ long	ft_atoi(const char *str)
 		result += *str - '0';
 		str++;
 	}
-	return(result * sign);
+	return (result * sign);
 }
 
 int	input_checker(char **argv)

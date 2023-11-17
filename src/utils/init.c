@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:35:38 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/16 18:04:07 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/17 18:15:52 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	init_data(t_data *data, char **argv, int argc)
 	if (data->philo_num <= 0 || data->philo_num > 200 || data->death_time < 0
 		|| data->eat_time < 0 || data->sleep_time < 0)
 		return (error(ERR_IN_2, NULL));
-
 	data->dead = 0;
 	data->finished = 0;
 	pthread_mutex_init(&data->write, NULL);
@@ -94,7 +93,6 @@ int	init(t_data *data, char **argv, int argc)
 		return (1);
 	if (init_forks(data))
 		return (1);
-
 	init_philos(data);
-	return(0);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdiez-as <mdiez-as@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:49:52 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/11/16 18:05:47 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/11/17 18:22:19 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 u_int64_t	get_time(void)
 {
+	int				time_of_day;
 	struct timeval	tv;
-	if (gettimeofday(&tv, NULL))
+
+	time_of_day = gettimeofday(&tv, NULL);
+	if (time_of_day == 1)
 		return (error("gettimeofday() FAILURE\n", NULL));
 	return ((tv.tv_sec * (u_int16_t)1000) + (tv.tv_usec / 1000));
 }
